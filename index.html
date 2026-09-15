@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Registro de gastos</title>
+<meta name="theme-color" content="#0A1B20">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gastos">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --bg-top: #16333A;
+    --bg-bottom: #0A1B20;
+    --card: rgba(255,255,255,0.045);
+    --card-border: rgba(255,255,255,0.08);
+    --text: #F3F6F5;
+    --text-soft: #8FA6A6;
+    --text-dim: #5E7676;
+    --gold: #F0B93D;
+    --gold-text: #3A2B08;
+    --teal: #3FC7B0;
+    --coral: #E5615A;
+    --violet: #9C8CF0;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+
+  body {
+    background: radial-gradient(120% 100% at 50% 0%, var(--bg-top) 0%, var(--bg-bottom) 65%);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    min-height: 100vh;
+    padding: max(24px, env(safe-area-inset-top)) 16px 60px;
+  }
+
+  .wrap { max-width: 560px; margin: 0 auto; }
+
+  h1 {
+    font-weight: 800;
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    margin: 4px 0 2px;
+  }
+  .subtitle { font-size: 13px; font-weight: 500; color: var(--text-soft); margin-bottom: 20px; }
+
+  .month-row {
+    display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .month-row::-webkit-scrollbar { display: none; }
+  .month-pill {
+    flex: none; font-size: 12.5px; font-weight: 600; padding: 8px 14px;
+    border: 1px solid var(--card-border); background: var(--card); color: var(--text-soft);
+    border-radius: 20px; cursor: pointer; white-space: nowrap;
+  }
+  .month-pill.active { background: var(--teal); color: #063028; border-color: var(--teal); }
+
+  .total-card {
+    background: linear-gradient(155deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid var(--card-border); border-radius: 22px; padding: 20px 20px 18px;
+    margin-bottom: 18px; box-shadow: 0 12px 30px -14px rgba(0,0,0,0.55);
+  }
+  .total-label { font-size: 11.5px; font-weight: 600; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+  .total-amount { font-weight: 800; font-size: 34px; letter-spacing: -0.02em; margin-top: 4px; }
+
+  .cat-breakdown { margin-top: 16px; display: flex; flex-direction: column; gap: 9px; }
+  .cat-row { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .cat-name { width: 92px; flex: none; font-weight: 500; color: var(--text-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cat-bar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.07); border-radius: 6px; overflow: hidden; }
+  .cat-bar-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--violet)); border-radius: 6px; }
+  .cat-value { width: 78px; flex: none; text-align: right; font-weight: 600; }
+
+  form.entry-form {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: 22px;
+    padding: 18px; margin-bottom: 22px;
+  }
+  .form-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+  .field-row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .field { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  label { font-size: 10.5px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+  input, select {
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; padding: 10px 12px;
+    border: 1px solid var(--card-border); border-radius: 12px; background: rgba(0,0,0,0.18);
+    color: var(--text); width: 100%;
+  }
+  input::placeholder { color: var(--text-dim); }
+  input:focus, select:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
+  select option { background: #16333A; color: var(--text); }
+  .submit-btn {
+    margin-top: 6px; width: 100%; background: var(--gold); color: var(--gold-text);
+    border: none; border-radius: 14px; padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer;
+  }
+  .submit-btn:active { opacity: 0.88; }
+
+  .ledger-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-soft); margin-bottom: 10px; margin-top: 4px;
+  }
+
+  .entry {
+    display: flex; align-items: center; gap: 12px; padding: 13px 14px; margin-bottom: 8px;
+    background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; font-size: 13px;
+  }
+  .entry-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,255,255,0.05); }
+  .entry-date { width: 40px; flex: none; color: var(--text-dim); font-weight: 500; font-size: 11.5px; }
+  .entry-mid { flex: 1; min-width: 0; }
+  .entry-reason { color: var(--text); font-weight: 600; overflow-wrap: break-word; }
+  .entry-category { color: var(--text-soft); font-size: 11px; font-weight: 500; margin-top: 2px; }
+  .entry-amount { flex: none; background: rgba(240,185,61,0.14); color: var(--gold); font-weight: 700; padding: 5px 10px; border-radius: 10px; font-size: 12.5px; }
+  .entry-del { flex: none; background: none; border: none; color: var(--text-dim); font-size: 17px; cursor: pointer; padding: 0 0 0 2px; line-height: 1; }
+  .entry-del:hover { color: var(--coral); }
+
+  .empty { color: var(--text-soft); font-size: 13px; font-weight: 500; padding: 22px 2px; text-align: center; border: 1px dashed var(--card-border); border-radius: 16px; }
+  .save-warning { font-size: 11.5px; font-weight: 600; color: var(--coral); margin-bottom: 10px; }
+  .footnote { text-align: center; font-size: 11px; color: var(--text-dim); margin-top: 24px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Registro de gastos</h1>
+    <div class="subtitle">Cada gasto, con su motivo.</div>
+
+    <div id="save-warning" class="save-warning" style="display:none;">
+      No se pudo guardar el último cambio en este dispositivo.
+    </div>
+
+    <div class="total-card">
+      <div class="total-label" id="total-label">Total</div>
+      <div class="total-amount" id="total-amount">$0</div>
+      <div class="cat-breakdown" id="cat-breakdown"></div>
+    </div>
+
+    <div class="month-row" id="month-row"></div>
+
+    <form class="entry-form" id="entry-form">
+      <div class="form-title">Nuevo gasto</div>
+      <div class="field-row">
+        <div class="field">
+          <label>Fecha</label>
+          <input type="date" id="f-date" required>
+        </div>
+        <div class="field">
+          <label>Monto (COP)</label>
+          <input type="number" id="f-amount" inputmode="numeric" placeholder="0" min="1" required>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Categoría</label>
+          <select id="f-category">
+            <option>Alimentación</option>
+            <option>Transporte</option>
+            <option>Vivienda</option>
+            <option>Servicios</option>
+            <option>Salud</option>
+            <option>Entretenimiento</option>
+            <option>Deudas</option>
+            <option>Otros</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>¿A qué se debió?</label>
+          <input type="text" id="f-reason" placeholder="ej. Mercado de la semana" required>
+        </div>
+      </div>
+      <button class="submit-btn" type="submit">Agregar gasto</button>
+    </form>
+
+    <div class="ledger-title">Movimientos</div>
+    <div id="entries-list"></div>
+
+    <div class="footnote">Tus datos se guardan solo en este dispositivo, en este navegador.</div>
+  </div>
+
+<script>
+  const STORAGE_KEY = 'gastos:entries';
+  const MONTH_NAMES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  const DOT_COLORS = ['var(--teal)','var(--coral)','var(--violet)','var(--gold)'];
+
+  let entries = [];
+  let selectedMonth = todayISO().slice(0,7);
+
+  function todayISO() { return new Date().toISOString().slice(0,10); }
+  function monthKey(d) { return d.slice(0,7); }
+  function monthLabel(key) {
+    const [y,m] = key.split('-');
+    return `${MONTH_NAMES[parseInt(m,10)-1]} ${y}`;
+  }
+  function formatCOP(n) {
+    return new Intl.NumberFormat('es-CO', { style:'currency', currency:'COP', maximumFractionDigits:0 }).format(n);
+  }
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      entries = raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      entries = [];
+    }
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+      document.getElementById('save-warning').style.display = 'none';
+    } catch (e) {
+      document.getElementById('save-warning').style.display = 'block';
+    }
+  }
+
+  function addEntry(date, amount, category, reason) {
+    entries.push({
+      id: Date.now() + '-' + Math.random().toString(36).slice(2,7),
+      date, amount, category, reason
+    });
+    entries.sort((a,b) => a.date < b.date ? 1 : -1);
+    save();
+    render();
+  }
+
+  function deleteEntry(id) {
+    entries = entries.filter(e => e.id !== id);
+    save();
+    render();
+  }
+
+  function render() {
+    const months = new Set(entries.map(e => monthKey(e.date)));
+    months.add(selectedMonth);
+    const monthList = Array.from(months).sort().reverse();
+
+    const monthRow = document.getElementById('month-row');
+    monthRow.innerHTML = '';
+    monthList.forEach(m => {
+      const btn = document.createElement('button');
+      btn.className = 'month-pill' + (m === selectedMonth ? ' active' : '');
+      btn.textContent = monthLabel(m);
+      btn.onclick = () => { selectedMonth = m; render(); };
+      monthRow.appendChild(btn);
+    });
+
+    const monthEntries = entries.filter(e => monthKey(e.date) === selectedMonth);
+    const total = monthEntries.reduce((s,e) => s + e.amount, 0);
+    document.getElementById('total-label').textContent = 'Total ' + monthLabel(selectedMonth);
+    document.getElementById('total-amount').textContent = formatCOP(total);
+
+    const byCat = {};
+    monthEntries.forEach(e => { byCat[e.category] = (byCat[e.category]||0) + e.amount; });
+    const catEntries = Object.entries(byCat).sort((a,b) => b[1]-a[1]);
+    const maxCat = catEntries.length ? catEntries[0][1] : 1;
+    const catBox = document.getElementById('cat-breakdown');
+    catBox.innerHTML = '';
+    catEntries.forEach(([cat,val]) => {
+      const row = document.createElement('div');
+      row.className = 'cat-row';
+      row.innerHTML = `
+        <span class="cat-name">${cat}</span>
+        <span class="cat-bar-track"><span class="cat-bar-fill" style="width:${(val/maxCat)*100}%"></span></span>
+        <span class="cat-value">${formatCOP(val)}</span>`;
+      catBox.appendChild(row);
+    });
+
+    const list = document.getElementById('entries-list');
+    list.innerHTML = '';
+    if (monthEntries.length === 0) {
+      list.innerHTML = '<div class="empty">Aún no hay gastos registrados este mes.</div>';
+    } else {
+      monthEntries.forEach((e, i) => {
+        const row = document.createElement('div');
+        row.className = 'entry';
+        const dotColor = DOT_COLORS[i % DOT_COLORS.length];
+        row.innerHTML = `
+          <span class="entry-dot" style="background:${dotColor}"></span>
+          <span class="entry-date">${e.date.slice(8,10)}/${e.date.slice(5,7)}</span>
+          <div class="entry-mid">
+            <div class="entry-reason"></div>
+            <div class="entry-category"></div>
+          </div>
+          <span class="entry-amount">${formatCOP(e.amount)}</span>
+          <button class="entry-del" aria-label="Eliminar">×</button>`;
+        row.querySelector('.entry-reason').textContent = e.reason;
+        row.querySelector('.entry-category').textContent = e.category;
+        row.querySelector('.entry-del').onclick = () => deleteEntry(e.id);
+        list.appendChild(row);
+      });
+    }
+  }
+
+  document.getElementById('f-date').value = todayISO();
+
+  document.getElementById('entry-form').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const date = document.getElementById('f-date').value;
+    const amount = parseFloat(document.getElementById('f-amount').value);
+    const category = document.getElementById('f-category').value;
+    const reason = document.getElementById('f-reason').value.trim();
+    if (!date || !amount || amount <= 0 || !reason) return;
+    addEntry(date, amount, category, reason);
+    document.getElementById('f-amount').value = '';
+    document.getElementById('f-reason').value = '';
+  });
+
+  load();
+  render();
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>
