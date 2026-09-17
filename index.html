@@ -36,36 +36,19 @@
     color: var(--text);
     font-family: 'Inter', -apple-system, system-ui, sans-serif;
     min-height: 100vh;
-    padding: max(24px, env(safe-area-inset-top)) 16px 60px;
   }
 
-  .wrap { max-width: 560px; margin: 0 auto; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: max(24px, env(safe-area-inset-top)) 16px 60px; }
 
-  h1 {
-    font-weight: 800;
-    font-size: 26px;
-    letter-spacing: -0.02em;
-    margin: 4px 0 2px;
-  }
+  h1 { font-weight: 800; font-size: 26px; letter-spacing: -0.02em; margin: 4px 0 2px; }
   .subtitle { font-size: 13px; font-weight: 500; color: var(--text-soft); margin-bottom: 20px; }
 
-  .month-row {
-    display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 16px;
-    -webkit-overflow-scrolling: touch;
-  }
+  .month-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 16px; -webkit-overflow-scrolling: touch; }
   .month-row::-webkit-scrollbar { display: none; }
-  .month-pill {
-    flex: none; font-size: 12.5px; font-weight: 600; padding: 8px 14px;
-    border: 1px solid var(--card-border); background: var(--card); color: var(--text-soft);
-    border-radius: 20px; cursor: pointer; white-space: nowrap;
-  }
+  .month-pill { flex: none; font-size: 12.5px; font-weight: 600; padding: 8px 14px; border: 1px solid var(--card-border); background: var(--card); color: var(--text-soft); border-radius: 20px; cursor: pointer; white-space: nowrap; }
   .month-pill.active { background: var(--teal); color: #063028; border-color: var(--teal); }
 
-  .total-card {
-    background: linear-gradient(155deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border: 1px solid var(--card-border); border-radius: 22px; padding: 20px 20px 18px;
-    margin-bottom: 18px; box-shadow: 0 12px 30px -14px rgba(0,0,0,0.55);
-  }
+  .total-card { background: linear-gradient(155deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid var(--card-border); border-radius: 22px; padding: 20px 20px 18px; margin-bottom: 18px; box-shadow: 0 12px 30px -14px rgba(0,0,0,0.55); }
   .total-label { font-size: 11.5px; font-weight: 600; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.06em; }
   .total-amount { font-weight: 800; font-size: 34px; letter-spacing: -0.02em; margin-top: 4px; }
 
@@ -76,37 +59,22 @@
   .cat-bar-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--violet)); border-radius: 6px; }
   .cat-value { width: 78px; flex: none; text-align: right; font-weight: 600; }
 
-  form.entry-form {
-    background: var(--card); border: 1px solid var(--card-border); border-radius: 22px;
-    padding: 18px; margin-bottom: 22px;
-  }
+  form.entry-form { background: var(--card); border: 1px solid var(--card-border); border-radius: 22px; padding: 18px; margin-bottom: 22px; }
   .form-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
   .field-row { display: flex; gap: 10px; margin-bottom: 10px; }
   .field { flex: 1; display: flex; flex-direction: column; gap: 5px; }
   label { font-size: 10.5px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
-  input, select {
-    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; padding: 10px 12px;
-    border: 1px solid var(--card-border); border-radius: 12px; background: rgba(0,0,0,0.18);
-    color: var(--text); width: 100%;
-  }
+  input, select { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; padding: 10px 12px; border: 1px solid var(--card-border); border-radius: 12px; background: rgba(0,0,0,0.18); color: var(--text); width: 100%; }
   input::placeholder { color: var(--text-dim); }
   input:focus, select:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
   select option { background: #16333A; color: var(--text); }
-  .submit-btn {
-    margin-top: 6px; width: 100%; background: var(--gold); color: var(--gold-text);
-    border: none; border-radius: 14px; padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer;
-  }
+  .submit-btn { margin-top: 6px; width: 100%; background: var(--gold); color: var(--gold-text); border: none; border-radius: 14px; padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer; }
   .submit-btn:active { opacity: 0.88; }
+  .secondary-btn { margin-top: 8px; width: 100%; background: transparent; color: var(--text-soft); border: 1px solid var(--card-border); border-radius: 14px; padding: 11px; font-size: 13px; font-weight: 600; cursor: pointer; }
 
-  .ledger-title {
-    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-    color: var(--text-soft); margin-bottom: 10px; margin-top: 4px;
-  }
+  .ledger-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-soft); margin-bottom: 10px; margin-top: 4px; }
 
-  .entry {
-    display: flex; align-items: center; gap: 12px; padding: 13px 14px; margin-bottom: 8px;
-    background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; font-size: 13px;
-  }
+  .entry { display: flex; align-items: center; gap: 12px; padding: 13px 14px; margin-bottom: 8px; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; font-size: 13px; }
   .entry-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,255,255,0.05); }
   .entry-date { width: 40px; flex: none; color: var(--text-dim); font-weight: 500; font-size: 11.5px; }
   .entry-mid { flex: 1; min-width: 0; }
@@ -119,15 +87,64 @@
   .empty { color: var(--text-soft); font-size: 13px; font-weight: 500; padding: 22px 2px; text-align: center; border: 1px dashed var(--card-border); border-radius: 16px; }
   .save-warning { font-size: 11.5px; font-weight: 600; color: var(--coral); margin-bottom: 10px; }
   .footnote { text-align: center; font-size: 11px; color: var(--text-dim); margin-top: 24px; }
+
+  /* Auth + lock screens */
+  .centered-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .auth-card, .lock-card { width: 100%; max-width: 380px; background: var(--card); border: 1px solid var(--card-border); border-radius: 22px; padding: 28px 22px; text-align: center; }
+  .auth-title { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+  .auth-sub { font-size: 12.5px; color: var(--text-soft); margin-bottom: 20px; }
+  .auth-field { text-align: left; margin-bottom: 10px; }
+  .auth-error { font-size: 12px; color: var(--coral); font-weight: 600; margin: 8px 0 0; min-height: 16px; }
+  .auth-toggle { font-size: 12.5px; color: var(--teal); background: none; border: none; margin-top: 14px; cursor: pointer; font-weight: 600; }
+  .lock-icon { font-size: 40px; margin-bottom: 10px; }
+  .topbar { display: flex; justify-content: flex-end; margin-bottom: 4px; }
+  .icon-btn { background: none; border: none; color: var(--text-dim); font-size: 11.5px; font-weight: 600; cursor: pointer; padding: 6px 10px; }
+  .hidden { display: none !important; }
 </style>
 </head>
 <body>
-  <div class="wrap">
+
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen" class="centered-screen hidden">
+    <div class="auth-card">
+      <div class="auth-title">Registro de gastos</div>
+      <div class="auth-sub" id="auth-sub">Inicia sesión para ver tus datos</div>
+      <div class="auth-field">
+        <label>Correo</label>
+        <input type="email" id="auth-email" autocomplete="username" placeholder="tucorreo@ejemplo.com">
+      </div>
+      <div class="auth-field">
+        <label>Contraseña</label>
+        <input type="password" id="auth-password" autocomplete="current-password" placeholder="Mínimo 6 caracteres">
+      </div>
+      <button class="submit-btn" id="auth-submit">Iniciar sesión</button>
+      <div class="auth-error" id="auth-error"></div>
+      <button class="auth-toggle" id="auth-toggle">¿No tienes cuenta? Crear una</button>
+    </div>
+  </div>
+
+  <!-- LOCK SCREEN (Face ID / Touch ID) -->
+  <div id="lock-screen" class="centered-screen hidden">
+    <div class="lock-card">
+      <div class="lock-icon">🔒</div>
+      <div class="auth-title">Bloqueado</div>
+      <div class="auth-sub">Desbloquea para ver tus gastos</div>
+      <button class="submit-btn" id="unlock-btn">Desbloquear con Face ID</button>
+      <button class="secondary-btn" id="lock-logout-btn">Cerrar sesión</button>
+      <div class="auth-error" id="lock-error"></div>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="app-screen" class="wrap hidden">
+    <div class="topbar">
+      <button class="icon-btn" id="signout-btn">Cerrar sesión</button>
+    </div>
     <h1>Registro de gastos</h1>
-    <div class="subtitle">Cada gasto, con su motivo.</div>
+    <div class="subtitle">Cada gasto, con su motivo. Sincronizado en la nube.</div>
 
     <div id="save-warning" class="save-warning" style="display:none;">
-      No se pudo guardar el último cambio en este dispositivo.
+      No se pudo sincronizar el último cambio. Revisa tu conexión.
     </div>
 
     <div class="total-card">
@@ -177,61 +194,209 @@
     <div class="ledger-title">Movimientos</div>
     <div id="entries-list"></div>
 
-    <div class="footnote">Tus datos se guardan solo en este dispositivo, en este navegador.</div>
+    <button class="secondary-btn hidden" id="enable-faceid-btn">Activar Face ID / Touch ID</button>
+    <div class="footnote">Tus datos están guardados en Firebase, ligados a tu cuenta.</div>
   </div>
 
+<!-- Firebase SDKs (compat build, easiest for plain JS) -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+
 <script>
-  const STORAGE_KEY = 'gastos:entries';
+  // ======= 1) PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE =======
+  const firebaseConfig = {
+    apiKey: "AIzaSyDcLxDe7O4d4V_wgHS7XkOI7AtMdVELjHg",
+    authDomain: "registro-de-gastos-6f3e9.firebaseapp.com",
+    projectId: "registro-de-gastos-6f3e9",
+    storageBucket: "registro-de-gastos-6f3e9.firebasestorage.app",
+    messagingSenderId: "996908559410",
+    appId: "1:996908559410:web:988c54a8a71a2fbf76602b"
+  };
+  // ===========================================================
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
   const MONTH_NAMES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
   const DOT_COLORS = ['var(--teal)','var(--coral)','var(--violet)','var(--gold)'];
+  const WEBAUTHN_ID_KEY = 'gastos_webauthn_cred_id';
 
+  let currentUser = null;
   let entries = [];
   let selectedMonth = todayISO().slice(0,7);
+  let unsubscribeSnapshot = null;
+  let isSignUpMode = false;
 
   function todayISO() { return new Date().toISOString().slice(0,10); }
   function monthKey(d) { return d.slice(0,7); }
-  function monthLabel(key) {
-    const [y,m] = key.split('-');
-    return `${MONTH_NAMES[parseInt(m,10)-1]} ${y}`;
-  }
-  function formatCOP(n) {
-    return new Intl.NumberFormat('es-CO', { style:'currency', currency:'COP', maximumFractionDigits:0 }).format(n);
+  function monthLabel(key) { const [y,m] = key.split('-'); return `${MONTH_NAMES[parseInt(m,10)-1]} ${y}`; }
+  function formatCOP(n) { return new Intl.NumberFormat('es-CO', { style:'currency', currency:'COP', maximumFractionDigits:0 }).format(n); }
+  function show(id) { document.getElementById(id).classList.remove('hidden'); }
+  function hide(id) { document.getElementById(id).classList.add('hidden'); }
+
+  // ---------- AUTH ----------
+  document.getElementById('auth-toggle').onclick = () => {
+    isSignUpMode = !isSignUpMode;
+    document.getElementById('auth-submit').textContent = isSignUpMode ? 'Crear cuenta' : 'Iniciar sesión';
+    document.getElementById('auth-sub').textContent = isSignUpMode ? 'Crea tu cuenta para empezar' : 'Inicia sesión para ver tus datos';
+    document.getElementById('auth-toggle').textContent = isSignUpMode ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Crear una';
+    document.getElementById('auth-error').textContent = '';
+  };
+
+  document.getElementById('auth-submit').onclick = async () => {
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value;
+    const errEl = document.getElementById('auth-error');
+    errEl.textContent = '';
+    if (!email || !password) { errEl.textContent = 'Completa correo y contraseña.'; return; }
+    try {
+      if (isSignUpMode) {
+        await auth.createUserWithEmailAndPassword(email, password);
+      } else {
+        await auth.signInWithEmailAndPassword(email, password);
+      }
+    } catch (e) {
+      errEl.textContent = traducirErrorFirebase(e.code);
+    }
+  };
+
+  function traducirErrorFirebase(code) {
+    const map = {
+      'auth/email-already-in-use': 'Ese correo ya tiene una cuenta. Inicia sesión en vez de crear una.',
+      'auth/invalid-email': 'El correo no es válido.',
+      'auth/weak-password': 'La contraseña debe tener al menos 6 caracteres.',
+      'auth/user-not-found': 'No existe una cuenta con ese correo.',
+      'auth/wrong-password': 'Contraseña incorrecta.',
+      'auth/invalid-credential': 'Correo o contraseña incorrectos.',
+      'auth/too-many-requests': 'Demasiados intentos. Espera un momento e intenta de nuevo.'
+    };
+    return map[code] || 'Ocurrió un error. Intenta de nuevo.';
   }
 
-  function load() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      entries = raw ? JSON.parse(raw) : [];
-    } catch (e) {
+  document.getElementById('signout-btn').onclick = () => auth.signOut();
+  document.getElementById('lock-logout-btn').onclick = () => auth.signOut();
+
+  auth.onAuthStateChanged((user) => {
+    hide('auth-screen'); hide('lock-screen'); hide('app-screen');
+    if (unsubscribeSnapshot) { unsubscribeSnapshot(); unsubscribeSnapshot = null; }
+    if (user) {
+      currentUser = user;
+      subscribeToData(user.uid);
+      const hasFaceId = !!localStorage.getItem(WEBAUTHN_ID_KEY + ':' + user.uid);
+      if (hasFaceId && window.PublicKeyCredential) {
+        show('lock-screen');
+      } else {
+        show('app-screen');
+        maybeShowFaceIdButton();
+      }
+    } else {
+      currentUser = null;
       entries = [];
+      show('auth-screen');
+    }
+  });
+
+  // ---------- FACE ID / TOUCH ID (WebAuthn, gate local sobre la sesión ya autenticada) ----------
+  function maybeShowFaceIdButton() {
+    const btn = document.getElementById('enable-faceid-btn');
+    if (!currentUser) return;
+    const already = !!localStorage.getItem(WEBAUTHN_ID_KEY + ':' + currentUser.uid);
+    if (window.PublicKeyCredential && !already) {
+      btn.classList.remove('hidden');
+    } else {
+      btn.classList.add('hidden');
     }
   }
 
-  function save() {
+  function randomBytes(len) {
+    const arr = new Uint8Array(len);
+    crypto.getRandomValues(arr);
+    return arr;
+  }
+
+  document.getElementById('enable-faceid-btn').onclick = async () => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
-      document.getElementById('save-warning').style.display = 'none';
+      const cred = await navigator.credentials.create({
+        publicKey: {
+          challenge: randomBytes(32),
+          rp: { name: 'Registro de gastos' },
+          user: {
+            id: new TextEncoder().encode(currentUser.uid),
+            name: currentUser.email,
+            displayName: currentUser.email
+          },
+          pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }],
+          authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required' },
+          timeout: 60000
+        }
+      });
+      const idB64 = btoa(String.fromCharCode(...new Uint8Array(cred.rawId)));
+      localStorage.setItem(WEBAUTHN_ID_KEY + ':' + currentUser.uid, idB64);
+      maybeShowFaceIdButton();
+      alert('Face ID / Touch ID activado. La próxima vez que abras la app te pedirá desbloquear así.');
     } catch (e) {
-      document.getElementById('save-warning').style.display = 'block';
+      alert('No se pudo activar Face ID en este dispositivo/navegador.');
     }
+  };
+
+  document.getElementById('unlock-btn').onclick = async () => {
+    const errEl = document.getElementById('lock-error');
+    errEl.textContent = '';
+    const idB64 = localStorage.getItem(WEBAUTHN_ID_KEY + ':' + currentUser.uid);
+    if (!idB64) { hide('lock-screen'); show('app-screen'); return; }
+    try {
+      const idBytes = Uint8Array.from(atob(idB64), c => c.charCodeAt(0));
+      await navigator.credentials.get({
+        publicKey: {
+          challenge: randomBytes(32),
+          allowCredentials: [{ id: idBytes, type: 'public-key' }],
+          userVerification: 'required',
+          timeout: 60000
+        }
+      });
+      hide('lock-screen');
+      show('app-screen');
+      maybeShowFaceIdButton();
+    } catch (e) {
+      errEl.textContent = 'No se pudo verificar. Intenta de nuevo.';
+    }
+  };
+
+  // ---------- FIRESTORE SYNC ----------
+  function subscribeToData(uid) {
+    unsubscribeSnapshot = db.collection('users').doc(uid).onSnapshot((doc) => {
+      entries = (doc.exists && doc.data().entries) ? doc.data().entries : [];
+      document.getElementById('save-warning').style.display = 'none';
+      render();
+    }, (err) => {
+      document.getElementById('save-warning').style.display = 'block';
+    });
+  }
+
+  function persist() {
+    if (!currentUser) return;
+    db.collection('users').doc(currentUser.uid).set({ entries }, { merge: true })
+      .then(() => { document.getElementById('save-warning').style.display = 'none'; })
+      .catch(() => { document.getElementById('save-warning').style.display = 'block'; });
   }
 
   function addEntry(date, amount, category, reason) {
-    entries.push({
-      id: Date.now() + '-' + Math.random().toString(36).slice(2,7),
-      date, amount, category, reason
-    });
+    entries.push({ id: Date.now() + '-' + Math.random().toString(36).slice(2,7), date, amount, category, reason });
     entries.sort((a,b) => a.date < b.date ? 1 : -1);
-    save();
+    persist();
     render();
   }
 
   function deleteEntry(id) {
     entries = entries.filter(e => e.id !== id);
-    save();
+    persist();
     render();
   }
 
+  // ---------- RENDER ----------
   function render() {
     const months = new Set(entries.map(e => monthKey(e.date)));
     months.add(selectedMonth);
@@ -261,10 +426,7 @@
     catEntries.forEach(([cat,val]) => {
       const row = document.createElement('div');
       row.className = 'cat-row';
-      row.innerHTML = `
-        <span class="cat-name">${cat}</span>
-        <span class="cat-bar-track"><span class="cat-bar-fill" style="width:${(val/maxCat)*100}%"></span></span>
-        <span class="cat-value">${formatCOP(val)}</span>`;
+      row.innerHTML = `<span class="cat-name">${cat}</span><span class="cat-bar-track"><span class="cat-bar-fill" style="width:${(val/maxCat)*100}%"></span></span><span class="cat-value">${formatCOP(val)}</span>`;
       catBox.appendChild(row);
     });
 
@@ -277,15 +439,7 @@
         const row = document.createElement('div');
         row.className = 'entry';
         const dotColor = DOT_COLORS[i % DOT_COLORS.length];
-        row.innerHTML = `
-          <span class="entry-dot" style="background:${dotColor}"></span>
-          <span class="entry-date">${e.date.slice(8,10)}/${e.date.slice(5,7)}</span>
-          <div class="entry-mid">
-            <div class="entry-reason"></div>
-            <div class="entry-category"></div>
-          </div>
-          <span class="entry-amount">${formatCOP(e.amount)}</span>
-          <button class="entry-del" aria-label="Eliminar">×</button>`;
+        row.innerHTML = `<span class="entry-dot" style="background:${dotColor}"></span><span class="entry-date">${e.date.slice(8,10)}/${e.date.slice(5,7)}</span><div class="entry-mid"><div class="entry-reason"></div><div class="entry-category"></div></div><span class="entry-amount">${formatCOP(e.amount)}</span><button class="entry-del" aria-label="Eliminar">×</button>`;
         row.querySelector('.entry-reason').textContent = e.reason;
         row.querySelector('.entry-category').textContent = e.category;
         row.querySelector('.entry-del').onclick = () => deleteEntry(e.id);
@@ -295,7 +449,6 @@
   }
 
   document.getElementById('f-date').value = todayISO();
-
   document.getElementById('entry-form').addEventListener('submit', (ev) => {
     ev.preventDefault();
     const date = document.getElementById('f-date').value;
@@ -308,13 +461,8 @@
     document.getElementById('f-reason').value = '';
   });
 
-  load();
-  render();
-
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js').catch(() => {});
-    });
+    window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
   }
 </script>
 </body>
